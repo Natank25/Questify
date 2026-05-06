@@ -1,6 +1,7 @@
 import { ArrowLeft, Moon, Sun, Bell, Globe, Shield, Info, LogOut, Palette, Volume2, Mail } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
+import { supabase } from '@/lib/supabase';
 
 interface SettingsProps {
   onClose: () => void;
@@ -20,9 +21,30 @@ export function Settings({ onClose }: SettingsProps) {
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [emailNotifications, setEmailNotifications] = useState(false);
   const [language, setLanguage] = useState('fr');
+  const [isSupabaseConnected, setIsSupabaseConnected] = useState<boolean | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    let isActive = true;
+
+    const verifyConnection = async () => {
+      const connected = Boolean(
+        supabase && !(await supabase.from('task_posts').select('id', { head: true }).limit(1)).error,
+      );
+
+      if (isActive) {
+        setIsSupabaseConnected(connected);
+      }
+    };
+
+    void verifyConnection();
+
+    return () => {
+      isActive = false;
+    };
   }, []);
 
   const isDarkMode = isMounted ? resolvedTheme === 'dark' : false;
@@ -202,6 +224,24 @@ export function Settings({ onClose }: SettingsProps) {
             <button className={sectionItemClassName}>
               <div className="font-medium">Aide et support</div>
             </button>
+
+            <div className="flex items-center justify-between px-4 py-4">
+              <div>
+                <div className="font-medium">Supabase</div>
+                <div className={mutedTextClassName}>Statut de connexion</div>
+              </div>
+              <span
+                className={`rounded-full px-3 py-1 text-xs font-medium ${
+                  isSupabaseConnected === null
+                    ? 'bg-muted text-muted-foreground'
+                    : isSupabaseConnected
+                      ? 'bg-emerald-100 text-emerald-700'
+                      : 'bg-red-100 text-red-700'
+                }`}
+              >
+                {isSupabaseConnected === null ? 'Vérification' : isSupabaseConnected ? 'Connecté' : 'Déconnecté'}
+              </span>
+            </div>
 
             <div className="px-4 py-4">
               <div className="text-sm text-muted-foreground">Version 1.0.0</div>

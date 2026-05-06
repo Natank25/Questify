@@ -9,6 +9,12 @@ Run `npm i` to install the dependencies.
 
 Run `npm run dev` to start the development server.
 
+## Supabase setup
+
+1. Copy `.env.example` to `.env.local`.
+2. Fill in `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` from your Supabase project settings. `SUPABASE_URL` and `SUPABASE_ANON_KEY` are also accepted.
+3. Import the shared client from `src/lib/supabase.ts` wherever you need database, auth, or storage access.
+
 ## Testing on Mobile
 
 ### Android
