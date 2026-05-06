@@ -12,6 +12,8 @@ You will need to create an account to use it.
 
 ## Running the code
 
+You will need to have [Node.js](https://nodejs.org/en/download) installed.
+
 Run `npm i` to install the dependencies.
 
 Run `npm run dev` to start the development server.
@@ -37,7 +39,7 @@ npx cap run android
 1. Enable Developer Options on your device
 2. Enable USB debugging
 3. Connect your device via USB
-4. Run the commands above
+4. Use [Android Studio](https://developer.android.com/studio) to run it on your device
 
 ### iOS
 
