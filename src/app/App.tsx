@@ -39,7 +39,7 @@ export default function App() {
 
   return (
     <div className="size-full bg-background text-foreground overflow-hidden flex flex-col max-w-lg mx-auto">
-      <div className="flex-1 overflow-y-auto pb-20">
+      <div className="flex-1 overflow-y-auto">
         {activeTab === 'profile' && showSettings ? (
           <Settings onClose={() => setShowSettings(false)} />
         ) : (

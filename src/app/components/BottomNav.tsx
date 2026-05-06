@@ -7,7 +7,7 @@ interface BottomNavProps {
 
 export function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border text-card-foreground safe-area-inset-bottom">
+    <div className="bg-card border-t border-border text-card-foreground safe-area-inset-bottom">
       <div
         className="mx-auto grid max-w-lg items-center px-4 py-2"
         style={{ gridTemplateColumns: `repeat(${navigationItems.length}, minmax(0, 1fr))` }}
