@@ -14,7 +14,10 @@ export function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
       >
         {navigationItems.map((item) => {
           const Icon = item.icon;
+          const isAction = item.kind === 'action';
           const isActive = item.kind === 'tab' && activeTab === item.id;
+          const iconClassName = isActive ? 'text-purple-600' : 'text-muted-foreground';
+          const labelClassName = isActive ? 'text-purple-600 font-medium' : 'text-muted-foreground';
 
           return (
             <button
@@ -26,17 +29,11 @@ export function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
               aria-current={isActive ? 'page' : undefined}
             >
               <Icon
-                className={`size-6 ${item.kind === 'action' ? 'size-7 text-purple-600' : isActive ? 'text-purple-600' : 'text-muted-foreground'}`}
-                strokeWidth={item.kind === 'action' || isActive ? 2.5 : 2}
+                className={`${isAction ? 'size-7' : 'size-6'} ${iconClassName}`}
+                strokeWidth={isActive ? 2.5 : 2}
               />
               <span
-                className={`text-xs ${
-                  item.kind === 'action'
-                    ? 'text-purple-600 font-medium'
-                    : isActive
-                      ? 'text-purple-600 font-medium'
-                      : 'text-muted-foreground'
-                }`}
+                className={`text-xs ${labelClassName}`}
               >
                 {item.label}
               </span>
