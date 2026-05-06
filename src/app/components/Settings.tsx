@@ -49,6 +49,14 @@ export function Settings({ onClose }: SettingsProps) {
 
   const isDarkMode = isMounted ? resolvedTheme === 'dark' : false;
 
+  const handleSignOut = async () => {
+    if (!supabase) {
+      return;
+    }
+
+    await supabase.auth.signOut();
+  };
+
   return (
     <div className="size-full bg-background text-foreground overflow-y-auto">
       <div className="sticky top-0 z-10 bg-gradient-to-br from-purple-600 to-pink-500 p-4 text-white">
@@ -249,7 +257,11 @@ export function Settings({ onClose }: SettingsProps) {
           </div>
         </div>
 
-        <button className="w-full rounded-2xl border border-border bg-card p-4 text-card-foreground transition-colors hover:border-red-200 hover:bg-red-50">
+        <button
+          onClick={() => void handleSignOut()}
+          disabled={!supabase}
+          className="w-full rounded-2xl border border-border bg-card p-4 text-card-foreground transition-colors hover:border-red-200 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-70"
+        >
           <div className="flex items-center justify-center gap-2 text-red-600">
             <LogOut className="size-5" />
             <span className="font-medium">Se déconnecter</span>
