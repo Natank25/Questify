@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">task-quest</string>
-    <string name="title_activity_main">task-quest</string>
+    <string name="app_name">questify</string>
+    <string name="title_activity_main">questify</string>
     <string name="package_name">io.github.natank25</string>
     <string name="custom_url_scheme">io.github.natank25</string>
 </resources>
