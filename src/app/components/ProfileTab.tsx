@@ -55,18 +55,18 @@ export function ProfileTab({ onSettingsClick, achievements, recentTasks }: Profi
             {achievements.map((achievement, index) => (
               <div
                 key={index}
-                className={`rounded-xl p-4 border-2 flex items-center gap-3 ${
+                className={`rounded-xl p-4 border-2 flex items-center gap-3 text-card-foreground ${
                   achievement.rarity === 'legendary'
-                    ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-yellow-400'
+                    ? 'bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border-yellow-400'
                     : achievement.rarity === 'epic'
-                      ? 'bg-gradient-to-r from-purple-50 to-pink-50 border-purple-400'
-                      : 'bg-gradient-to-r from-blue-50 to-cyan-50 border-blue-400'
+                      ? 'bg-gradient-to-r from-purple-500/10 to-pink-500/10 border-purple-400'
+                      : 'bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border-blue-400'
                 }`}
               >
                 <div className="text-3xl">{achievement.emoji}</div>
                 <div className="flex-1">
                   <div className="font-bold">{achievement.title}</div>
-                  <div className="text-sm text-gray-600">{achievement.desc}</div>
+                  <div className="text-sm text-muted-foreground">{achievement.desc}</div>
                 </div>
               </div>
             ))}
@@ -77,13 +77,13 @@ export function ProfileTab({ onSettingsClick, achievements, recentTasks }: Profi
           <h3 className="font-bold text-lg mb-3">Tâches récentes</h3>
           <div className="space-y-2">
             {recentTasks.map((task, index) => (
-              <div key={index} className="bg-white rounded-xl p-4 border border-gray-100 flex items-center gap-3">
+              <div key={index} className="bg-card rounded-xl p-4 border border-border text-card-foreground flex items-center gap-3">
                 <div className="text-3xl">{task.emoji}</div>
                 <div className="flex-1">
                   <div className="font-medium">{task.title}</div>
                   <div className="text-sm text-purple-600">+{task.xp} XP</div>
                 </div>
-                <div className="text-xs text-gray-500">{task.date}</div>
+                <div className="text-xs text-muted-foreground">{task.date}</div>
               </div>
             ))}
           </div>

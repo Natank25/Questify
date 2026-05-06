@@ -29,21 +29,18 @@ export function AddTaskModal({ onClose }: AddTaskModalProps) {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-end justify-center z-50 p-0">
-      <div className="bg-white rounded-t-3xl w-full max-w-lg animate-slide-up">
-        {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
+      <div className="bg-card text-card-foreground rounded-t-3xl w-full max-w-lg animate-slide-up">
+        <div className="flex items-center justify-between p-4 border-b border-border">
           <h2 className="text-xl font-bold">Publier une tâche</h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-2 hover:bg-accent rounded-full transition-colors"
           >
             <X className="size-6" />
           </button>
         </div>
 
-        {/* Content */}
         <div className="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
-          {/* Task Type Selection */}
           <div>
             <label className="block text-sm font-medium mb-3">Type de tâche</label>
             <div className="grid grid-cols-3 gap-3">
@@ -53,8 +50,8 @@ export function AddTaskModal({ onClose }: AddTaskModalProps) {
                   onClick={() => setTaskType(type.id)}
                   className={`p-4 rounded-xl border-2 transition-all ${
                     taskType === type.id
-                      ? 'border-purple-600 bg-purple-50'
-                      : 'border-gray-200 hover:border-gray-300'
+                      ? 'border-purple-600 bg-purple-500/10'
+                      : 'border-border hover:border-muted-foreground/40'
                   }`}
                 >
                   <div className="text-3xl mb-1">{type.emoji}</div>
@@ -64,7 +61,6 @@ export function AddTaskModal({ onClose }: AddTaskModalProps) {
             </div>
           </div>
 
-          {/* Difficulty Selection */}
           <div>
             <label className="block text-sm font-medium mb-3">Difficulté</label>
             <div className="grid grid-cols-3 gap-3">
@@ -72,8 +68,8 @@ export function AddTaskModal({ onClose }: AddTaskModalProps) {
                 onClick={() => setDifficulty('easy')}
                 className={`p-3 rounded-xl border-2 transition-all ${
                   difficulty === 'easy'
-                    ? 'border-green-500 bg-green-50'
-                    : 'border-gray-200 hover:border-gray-300'
+                    ? 'border-green-500 bg-green-500/10'
+                    : 'border-border hover:border-muted-foreground/40'
                 }`}
               >
                 <div className="text-sm font-medium">😊 Facile</div>
@@ -82,8 +78,8 @@ export function AddTaskModal({ onClose }: AddTaskModalProps) {
                 onClick={() => setDifficulty('medium')}
                 className={`p-3 rounded-xl border-2 transition-all ${
                   difficulty === 'medium'
-                    ? 'border-yellow-500 bg-yellow-50'
-                    : 'border-gray-200 hover:border-gray-300'
+                    ? 'border-yellow-500 bg-yellow-500/10'
+                    : 'border-border hover:border-muted-foreground/40'
                 }`}
               >
                 <div className="text-sm font-medium">😅 Moyen</div>
@@ -92,8 +88,8 @@ export function AddTaskModal({ onClose }: AddTaskModalProps) {
                 onClick={() => setDifficulty('hard')}
                 className={`p-3 rounded-xl border-2 transition-all ${
                   difficulty === 'hard'
-                    ? 'border-red-500 bg-red-50'
-                    : 'border-gray-200 hover:border-gray-300'
+                    ? 'border-red-500 bg-red-500/10'
+                    : 'border-border hover:border-muted-foreground/40'
                 }`}
               >
                 <div className="text-sm font-medium">😰 Difficile</div>
@@ -101,8 +97,7 @@ export function AddTaskModal({ onClose }: AddTaskModalProps) {
             </div>
           </div>
 
-          {/* XP Preview */}
-          <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl p-4">
+          <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Sparkles className="size-5 text-purple-600" />
@@ -110,19 +105,18 @@ export function AddTaskModal({ onClose }: AddTaskModalProps) {
               </div>
               <span className="text-2xl font-bold text-purple-600">+{estimatedXP} XP</span>
             </div>
-            <p className="text-xs text-gray-600 mt-2">
+            <p className="text-xs text-muted-foreground mt-2">
               Les vrais XP dépendront des likes/dislikes
             </p>
           </div>
 
-          {/* Task Details */}
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium mb-2">Titre</label>
               <input
                 type="text"
                 placeholder="Ex: Grand ménage de printemps"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-600"
+                className="w-full px-4 py-3 border border-border rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-purple-600"
               />
             </div>
 
@@ -131,24 +125,23 @@ export function AddTaskModal({ onClose }: AddTaskModalProps) {
               <textarea
                 placeholder="Décris ce que tu as fait..."
                 rows={3}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-600 resize-none"
+                className="w-full px-4 py-3 border border-border rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-purple-600 resize-none"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium mb-2">Photo (preuve !)</label>
-              <button className="w-full border-2 border-dashed border-gray-300 rounded-xl p-8 hover:border-purple-400 hover:bg-purple-50 transition-all">
-                <Camera className="size-8 mx-auto text-gray-400 mb-2" />
-                <div className="text-sm text-gray-600">Ajouter une photo</div>
+              <button className="w-full border-2 border-dashed border-border rounded-xl p-8 hover:border-purple-400 hover:bg-purple-500/10 transition-all">
+                <Camera className="size-8 mx-auto text-muted-foreground mb-2" />
+                <div className="text-sm text-muted-foreground">Ajouter une photo</div>
               </button>
             </div>
           </div>
 
-          {/* Actions */}
           <div className="flex gap-3 pt-4">
             <button
               onClick={onClose}
-              className="flex-1 px-6 py-3 border border-gray-300 rounded-xl font-medium hover:bg-gray-50 transition-colors"
+              className="flex-1 px-6 py-3 border border-border rounded-xl font-medium hover:bg-accent transition-colors"
             >
               Annuler
             </button>

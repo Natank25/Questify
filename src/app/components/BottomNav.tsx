@@ -15,7 +15,7 @@ export function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 safe-area-inset-bottom">
+    <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border text-card-foreground safe-area-inset-bottom">
       <div className="flex items-center justify-around px-4 py-2 max-w-lg mx-auto">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -29,12 +29,12 @@ export function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
             >
               <Icon
                 className={`size-6 ${
-                  isActive ? 'text-purple-600' : 'text-gray-600'
+                  isActive ? 'text-purple-600' : 'text-muted-foreground'
                 } ${item.id === 'add' ? 'size-7' : ''}`}
                 strokeWidth={isActive ? 2.5 : 2}
               />
               <span className={`text-xs ${
-                isActive ? 'text-purple-600 font-medium' : 'text-gray-600'
+                isActive ? 'text-purple-600 font-medium' : 'text-muted-foreground'
               }`}>
                 {item.label}
               </span>

@@ -30,7 +30,7 @@ export default function App() {
   };
 
   return (
-    <div className="size-full bg-gray-50 overflow-hidden flex flex-col max-w-lg mx-auto">
+    <div className="size-full bg-background text-foreground overflow-hidden flex flex-col max-w-lg mx-auto">
       <div className="flex-1 overflow-y-auto pb-20">
         {activeTab === 'feed' && (
           <FeedTab tasks={feedTasks} />

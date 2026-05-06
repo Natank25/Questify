@@ -14,7 +14,7 @@ export function WeeklyChart() {
   const totalXP = data.reduce((sum, d) => sum + d.xp, 0);
 
   return (
-    <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+    <div className="bg-card rounded-2xl p-4 shadow-sm border border-border text-card-foreground">
       <h3 className="font-bold mb-4">XP cette semaine</h3>
       <ResponsiveContainer width="100%" height={150}>
         <BarChart data={data}>
@@ -22,7 +22,7 @@ export function WeeklyChart() {
             dataKey="day"
             axisLine={false}
             tickLine={false}
-            tick={{ fontSize: 12, fill: '#6B7280' }}
+            tick={{ fontSize: 12, fill: 'currentColor' }}
           />
           <Bar
             dataKey="xp"
@@ -33,7 +33,7 @@ export function WeeklyChart() {
       </ResponsiveContainer>
       <div className="text-center mt-3">
         <div className="text-2xl font-bold">{totalXP} XP</div>
-        <div className="text-sm text-gray-600">Total gagné</div>
+        <div className="text-sm text-muted-foreground">Total gagné</div>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export function ProfileHeader({ onSettingsClick }: ProfileHeaderProps) {
               alt="Profile"
               className="size-20 rounded-full border-4 border-white object-cover"
             />
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white text-purple-600 px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-background text-purple-600 px-3 py-1 rounded-full flex items-center gap-1 shadow-lg border border-border">
               <Crown className="size-3" />
               <span className="text-xs font-bold">Niveau 12</span>
             </div>

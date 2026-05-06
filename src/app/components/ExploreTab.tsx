@@ -14,7 +14,7 @@ export function ExploreTab({ categories, leaderboardUsers, trendingTopics }: Exp
         <input
           type="text"
           placeholder="Rechercher des tâches, personnes..."
-          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-600"
+          className="w-full px-4 py-3 border border-border rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-purple-600"
         />
       </div>
 
@@ -30,20 +30,20 @@ export function ExploreTab({ categories, leaderboardUsers, trendingTopics }: Exp
 
       <div>
         <h3 className="font-bold text-lg mb-3">🏆 Top de la semaine</h3>
-        <div className="bg-white rounded-2xl overflow-hidden border border-gray-100">
+        <div className="bg-card rounded-2xl overflow-hidden border border-border text-card-foreground">
           {leaderboardUsers.map((user) => (
-            <div key={user.rank} className="px-4 py-3 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors">
+            <div key={user.rank} className="px-4 py-3 border-b border-border last:border-0 hover:bg-accent transition-colors">
               <div className="flex items-center gap-3">
                 <div
                   className={`size-8 rounded-full flex items-center justify-center font-bold ${
-                    user.rank === 1 ? 'bg-yellow-400 text-yellow-900' : user.rank === 2 ? 'bg-gray-300 text-gray-700' : 'bg-orange-300 text-orange-900'
+                    user.rank === 1 ? 'bg-yellow-400 text-yellow-900' : user.rank === 2 ? 'bg-muted text-foreground' : 'bg-orange-300 text-orange-900'
                   }`}
                 >
                   {user.rank}
                 </div>
                 <div className="flex-1">
                   <div className="font-medium">{user.name}</div>
-                  <div className="text-sm text-gray-600">Niveau {user.level} • {user.xp} XP</div>
+                  <div className="text-sm text-muted-foreground">Niveau {user.level} • {user.xp} XP</div>
                 </div>
                 <div className="text-2xl">{user.rank === 1 ? '🥇' : user.rank === 2 ? '🥈' : '🥉'}</div>
               </div>
@@ -54,13 +54,13 @@ export function ExploreTab({ categories, leaderboardUsers, trendingTopics }: Exp
 
       <div>
         <h3 className="font-bold text-lg mb-3">🔥 Tendances</h3>
-        <div className="bg-white rounded-2xl overflow-hidden border border-gray-100">
+        <div className="bg-card rounded-2xl overflow-hidden border border-border text-card-foreground">
           {trendingTopics.map((trend) => (
-            <div key={trend.challenge} className="px-4 py-3 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors">
+            <div key={trend.challenge} className="px-4 py-3 border-b border-border last:border-0 hover:bg-accent transition-colors">
               <div className="flex items-center justify-between">
                 <div>
                   <div className="font-medium text-purple-600">{trend.challenge}</div>
-                  <div className="text-sm text-gray-600">{trend.count} participants</div>
+                  <div className="text-sm text-muted-foreground">{trend.count} participants</div>
                 </div>
                 <div className="text-2xl">🔥</div>
               </div>

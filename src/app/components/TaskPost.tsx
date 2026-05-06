@@ -59,8 +59,7 @@ export function TaskPost({ user, task, stats, timestamp }: TaskPostProps) {
   };
 
   return (
-    <div className="bg-white border-b border-gray-200">
-      {/* Header */}
+    <div className="bg-card border-b border-border text-card-foreground">
       <div className="flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-3">
           <div className="relative">
@@ -80,7 +79,7 @@ export function TaskPost({ user, task, stats, timestamp }: TaskPostProps) {
                 {difficultyLabels[task.difficulty]}
               </span>
             </div>
-            <div className="flex items-center gap-1 text-xs text-gray-500">
+            <div className="flex items-center gap-1 text-xs text-muted-foreground">
               <span>{taskIcons[task.type]}</span>
               <span className="capitalize">{task.type === 'dishes' ? 'Vaisselle' : task.type === 'cleaning' ? 'Ménage' : task.type === 'cooking' ? 'Cuisine' : task.type === 'laundry' ? 'Lessive' : task.type === 'shopping' ? 'Courses' : 'Organisation'}</span>
               <span>•</span>
@@ -88,13 +87,12 @@ export function TaskPost({ user, task, stats, timestamp }: TaskPostProps) {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-1 bg-purple-50 px-2 py-1 rounded-full">
+        <div className="flex items-center gap-1 bg-purple-500/10 px-2 py-1 rounded-full">
           <Sparkles className="size-3 text-purple-600" />
           <span className="text-xs font-bold text-purple-600">+{task.xpGained} XP</span>
         </div>
       </div>
 
-      {/* Task Image */}
       <div className="relative">
         <img
           src={task.image}
@@ -102,7 +100,6 @@ export function TaskPost({ user, task, stats, timestamp }: TaskPostProps) {
           className="w-full aspect-square object-cover"
         />
 
-        {/* Title Overlay */}
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
           <h3 className="text-white font-bold text-lg">{task.title}</h3>
           {task.description && (
@@ -111,7 +108,6 @@ export function TaskPost({ user, task, stats, timestamp }: TaskPostProps) {
         </div>
       </div>
 
-      {/* Actions */}
       <div className="px-4 py-3">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-6">
@@ -120,9 +116,9 @@ export function TaskPost({ user, task, stats, timestamp }: TaskPostProps) {
               className="flex items-center gap-1.5 transition-transform active:scale-90"
             >
               <ThumbsUp
-                className={`size-6 ${liked ? 'fill-green-500 text-green-500' : 'text-gray-900'}`}
+                className={`size-6 ${liked ? 'fill-green-500 text-green-500' : 'text-foreground'}`}
               />
-              <span className={`text-sm font-semibold ${liked ? 'text-green-500' : 'text-gray-900'}`}>
+              <span className={`text-sm font-semibold ${liked ? 'text-green-500' : 'text-foreground'}`}>
                 {stats.likes + (liked ? 1 : 0)}
               </span>
             </button>
@@ -132,9 +128,9 @@ export function TaskPost({ user, task, stats, timestamp }: TaskPostProps) {
               className="flex items-center gap-1.5 transition-transform active:scale-90"
             >
               <ThumbsDown
-                className={`size-6 ${disliked ? 'fill-red-500 text-red-500' : 'text-gray-900'}`}
+                className={`size-6 ${disliked ? 'fill-red-500 text-red-500' : 'text-foreground'}`}
               />
-              <span className={`text-sm font-semibold ${disliked ? 'text-red-500' : 'text-gray-900'}`}>
+              <span className={`text-sm font-semibold ${disliked ? 'text-red-500' : 'text-foreground'}`}>
                 {stats.dislikes + (disliked ? 1 : 0)}
               </span>
             </button>
@@ -151,7 +147,7 @@ export function TaskPost({ user, task, stats, timestamp }: TaskPostProps) {
         </div>
 
         {stats.likes > 0 && (
-          <div className="text-sm text-gray-700">
+          <div className="text-sm text-foreground/80">
             <span className="font-semibold">{stats.likes}</span> personnes trouvent ça bien fait 👏
           </div>
         )}
