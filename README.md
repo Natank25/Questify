@@ -1,7 +1,6 @@
 # Application mobile AntiProcrastination
 
-This is a code bundle for Application mobile de fitness. The original project is
-available
+The original project is available
 at https://www.figma.com/design/0HceDyZWO2CQKeke66dDwe/Application-mobile-de-fitness.
 
 ## Running the code
