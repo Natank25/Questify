@@ -1,6 +1,8 @@
 import { X, Camera, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from './ui/drawer';
+
 interface AddTaskModalProps {
   onClose: () => void;
 }
@@ -28,19 +30,32 @@ export function AddTaskModal({ onClose }: AddTaskModalProps) {
   const estimatedXP = selectedTask ? Math.round(selectedTask.baseXP * difficultyMultipliers[difficulty]) : 0;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-end justify-center z-50 p-0">
-      <div className="bg-card text-card-foreground rounded-t-3xl w-full max-w-lg animate-slide-up">
-        <div className="flex items-center justify-between p-4 border-b border-border">
+    <Drawer
+      open
+      direction="bottom"
+      onOpenChange={(open) => {
+        if (!open) {
+          onClose();
+        }
+      }}
+    >
+      <DrawerContent className="mx-auto w-full max-w-lg overflow-hidden rounded-t-3xl border-border bg-card text-card-foreground">
+        <DrawerHeader className="sr-only">
+          <DrawerTitle>Publier une tâche</DrawerTitle>
+        </DrawerHeader>
+
+        <div className="flex items-center justify-between border-b border-border p-4">
           <h2 className="text-xl font-bold">Publier une tâche</h2>
           <button
             onClick={onClose}
             className="p-2 hover:bg-accent rounded-full transition-colors"
+            aria-label="Fermer"
           >
             <X className="size-6" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
+        <div className="max-h-[70vh] space-y-6 overflow-y-auto p-6">
           <div>
             <label className="block text-sm font-medium mb-3">Type de tâche</label>
             <div className="grid grid-cols-3 gap-3">
@@ -150,7 +165,7 @@ export function AddTaskModal({ onClose }: AddTaskModalProps) {
             </button>
           </div>
         </div>
-      </div>
-    </div>
+      </DrawerContent>
+    </Drawer>
   );
 }
