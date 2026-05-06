@@ -1,6 +1,10 @@
 import { Settings, Trophy, Sparkles, Crown } from 'lucide-react';
 
-export function ProfileHeader() {
+interface ProfileHeaderProps {
+  onSettingsClick: () => void;
+}
+
+export function ProfileHeader({ onSettingsClick }: ProfileHeaderProps) {
   const currentXP = 2847;
   const nextLevelXP = 3000;
   const progress = (currentXP / nextLevelXP) * 100;
@@ -29,7 +33,10 @@ export function ProfileHeader() {
             </div>
           </div>
         </div>
-        <button className="p-2 hover:bg-white/20 rounded-full transition-colors">
+        <button
+          onClick={onSettingsClick}
+          className="p-2 hover:bg-white/20 rounded-full transition-colors"
+        >
           <Settings className="size-6" />
         </button>
       </div>

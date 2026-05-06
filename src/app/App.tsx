@@ -5,11 +5,13 @@ import { WeeklyChart } from './components/WeeklyChart';
 import { BottomNav } from './components/BottomNav';
 import { ProfileHeader } from './components/ProfileHeader';
 import { AddTaskModal } from './components/AddTaskModal';
+import { Settings } from './components/Settings';
 import { CheckCircle2, ThumbsUp, Sparkles, Trophy } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('feed');
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   const handleTabChange = (tab: string) => {
     if (tab === 'add') {
@@ -264,9 +266,9 @@ export default function App() {
           </div>
         )}
 
-        {activeTab === 'profile' && (
+        {activeTab === 'profile' && !showSettings && (
           <div>
-            <ProfileHeader />
+            <ProfileHeader onSettingsClick={() => setShowSettings(true)} />
 
             <div className="p-4 space-y-4">
               {/* Stats Grid */}
@@ -351,10 +353,16 @@ export default function App() {
             </div>
           </div>
         )}
+
+        {activeTab === 'profile' && showSettings && (
+          <Settings onClose={() => setShowSettings(false)} />
+        )}
       </div>
 
       {/* Bottom Navigation */}
-      <BottomNav activeTab={activeTab} onTabChange={handleTabChange} />
+      {!showSettings && (
+        <BottomNav activeTab={activeTab} onTabChange={handleTabChange} />
+      )}
 
       {/* Add Task Modal */}
       {showAddModal && (
