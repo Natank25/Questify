@@ -1,7 +1,14 @@
-# Application mobile AntiProcrastination
+# Questify
 
-The original project is available
-at https://www.figma.com/design/0HceDyZWO2CQKeke66dDwe/Application-mobile-de-fitness.
+## Description
+
+Questify is a mobile app inspired by Strava and Instagram where users share the everyday tasks they complete.
+Each task is posted to a feed, and the community can react with likes or dislikes.
+These reactions impact the author’s experience points (EXP), rewarding consistency and positive feedback.
+
+A website version of the app is available [here](https://poc-questify.vercel.app/).
+
+You will need to create an account to use it.
 
 ## Running the code
 
