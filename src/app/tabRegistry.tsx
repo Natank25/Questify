@@ -122,6 +122,16 @@ export function getTabDirection(previousTab: TabId, nextTab: TabId): TabDirectio
   return nextIndex >= previousIndex ? 1 : -1;
 }
 
+export function getAdjacentTabId(tabId: TabId, offset: -1 | 1): TabId {
+  const currentIndex = tabIndexById.get(tabId) ?? 0;
+  const nextIndex = Math.min(
+    Math.max(currentIndex + offset, 0),
+    tabDefinitions.length - 1,
+  );
+
+  return tabDefinitions[nextIndex].id;
+}
+
 
 
 

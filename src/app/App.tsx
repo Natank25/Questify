@@ -4,6 +4,7 @@ import { AddTaskModal } from './components/AddTaskModal';
 import { SlidingTabViewport } from './components/SlidingTabViewport';
 import { Settings } from './components/Settings';
 import {
+  getAdjacentTabId,
   getTabDefinition,
   getTabDirection,
   type NavigationSelection,
@@ -31,6 +32,11 @@ export default function App() {
     }
   };
 
+  const handleSwipeTabChange = (offset: -1 | 1) => {
+    setShowSettings(false);
+    setActiveTab((currentTab) => getAdjacentTabId(currentTab, offset));
+  };
+
   return (
     <div className="size-full bg-background text-foreground overflow-hidden flex flex-col max-w-lg mx-auto">
       <div className="flex-1 overflow-y-auto pb-20">
@@ -41,6 +47,7 @@ export default function App() {
             activeTab={activeTabDefinition}
             direction={slideDirection}
             renderContext={{ onSettingsClick: () => setShowSettings(true) }}
+            onSwipeTabChange={handleSwipeTabChange}
           />
         )}
       </div>
