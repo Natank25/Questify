@@ -1,41 +1,43 @@
-import { Home, Compass, PlusCircle, Bell, User } from 'lucide-react';
+import { navigationItems, type NavigationSelection, type TabId } from '../tabRegistry';
 
 interface BottomNavProps {
-  activeTab: string;
-  onTabChange: (tab: string) => void;
+  activeTab: TabId;
+  onTabChange: (tab: NavigationSelection) => void;
 }
 
 export function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
-  const navItems = [
-    { id: 'feed', icon: Home, label: 'Feed' },
-    { id: 'explore', icon: Compass, label: 'Explorer' },
-    { id: 'add', icon: PlusCircle, label: 'Ajouter' },
-    { id: 'notifications', icon: Bell, label: 'Alertes' },
-    { id: 'profile', icon: User, label: 'Profil' },
-  ];
-
   return (
-      <div className="bg-card border-t border-border text-card-foreground safe-area-inset-bottom">
-        <div className="flex items-center justify-around px-4 py-2 max-w-lg mx-auto">
-        {navItems.map((item) => {
+    <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border text-card-foreground safe-area-inset-bottom">
+      <div
+        className="mx-auto grid max-w-lg items-center px-4 py-2"
+        style={{ gridTemplateColumns: `repeat(${navigationItems.length}, minmax(0, 1fr))` }}
+      >
+        {navigationItems.map((item) => {
           const Icon = item.icon;
-          const isActive = activeTab === item.id;
+          const isActive = item.kind === 'tab' && activeTab === item.id;
 
           return (
             <button
               key={item.id}
+              type="button"
               onClick={() => onTabChange(item.id)}
-              className="flex flex-col items-center gap-1 py-2 px-3 transition-colors"
+              className="flex flex-col items-center gap-1 px-2 py-2 transition-colors"
+              aria-label={item.label}
+              aria-current={isActive ? 'page' : undefined}
             >
               <Icon
-                className={`size-6 ${
-                  isActive ? 'text-purple-600' : 'text-muted-foreground'
-                } ${item.id === 'add' ? 'size-7' : ''}`}
-                strokeWidth={isActive ? 2.5 : 2}
+                className={`size-6 ${item.kind === 'action' ? 'size-7 text-purple-600' : isActive ? 'text-purple-600' : 'text-muted-foreground'}`}
+                strokeWidth={item.kind === 'action' || isActive ? 2.5 : 2}
               />
-              <span className={`text-xs ${
-                isActive ? 'text-purple-600 font-medium' : 'text-muted-foreground'
-              }`}>
+              <span
+                className={`text-xs ${
+                  item.kind === 'action'
+                    ? 'text-purple-600 font-medium'
+                    : isActive
+                      ? 'text-purple-600 font-medium'
+                      : 'text-muted-foreground'
+                }`}
+              >
                 {item.label}
               </span>
             </button>
